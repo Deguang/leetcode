@@ -1,2 +1,2 @@
-# leetcode
+# LeetCode
 JavaScript solutions for LeetCode.
