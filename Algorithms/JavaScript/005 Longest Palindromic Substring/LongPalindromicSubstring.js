@@ -4,15 +4,20 @@
  */
 var longestPalindrome = function(s) {
     var len = s.length;
-    for (var i = len; i > 1; i --) {
-        for (var j = 0; j <= len - i + 1; j ++) {
-            var subStr = s.substring(j, j + i - 1),
+    if (len === 1) return s;
+    for (var i = len; i >= 1; i --) {
+        for (var j = 0; j <= len - i; j ++) {
+            var subStr = s.substr(j, i),
                 count = 0,
-                subLen = Math.floor(subStr.length / 2);
+                subLen = Math.floor(i / 2);
+            if(i === 1) {
+                return subStr
+            }
             for(var k = 0; k <= subLen; k++) {
-                if(subStr[k] === subStr[subLen - k - 1]) {
+                if(subStr[k] === subStr[i - k - 1]) {
                     count++;
                     if(count === subLen) {
+                        console.log(subStr)
                         return subStr;
                     }
                 } else {
@@ -23,4 +28,4 @@ var longestPalindrome = function(s) {
     }
 };
 
-longestPalindrome('1232167');
+longestPalindrome("abcda");
