@@ -4,5 +4,5 @@ Given a string s, find the longest palindromic substring in s. You may assume th
 
 **1.** brute-force solution
 > loop all subStr  
-> Time complexity: `O(n^3)`
-
+> Time complexity: `O(n^3)`  
+> bad solution: with too many re-computation
