@@ -3,33 +3,62 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    let _nums = nums.sort(),
-        len = _nums.length,
-        result = [];
+    nums = nums.sort(function(a,b) {return a-b});
+    let len = nums.length,
+        result = [],
+        lastItem = nums[len-1],
+        lastSecondItem = nums[len-2],
+        bigestTwoSum = lastItem + lastSecondItem;
 
-    for(let i = 0; i < len; i++) {
-        let target = 0 - _nums[i];
-        for(let j = i + 1; j < len; j++) {
-            for(let k = j + 1; k < len; k++) {
-                if(target === (_nums[j] + _nums[k])) {
-                    result.push([_nums[i], _nums[j], _nums[k]])
-                }
+    for(let i = 0; i < len-2; i++) {
+        if(i > 0 &&nums[i] == nums[i -1]) continue;
+        if(nums[i] > 0) break;
+
+        let target = 0 - nums[i];
+
+        if(target > bigestTwoSum) continue;
+    //      ALWAYS TIMEOUT
+    //     let mid;
+    //     for(let _i = i + 1; _i < len; _i++) {
+    //         if(nums[_i] == target/2) {
+    //             mid = _i;
+    //             break
+    //         }
+    //         if(nums[_i] > target/2) {
+    //             mid = _i -1
+    //             break;
+    //         }
+    //     }
+
+    //     for(let j = i + 1; j <= mid; j++) {
+    //         if( j > i + 1 && nums[j] == nums[j-1]) continue;
+    //         for(let k = mid+1; k < len; k ++) {
+    //             if( k > mid+1 && nums[k] == nums[k-1]) continue;
+    //             if (nums[j] + nums[k] == target) {
+    //                 result.push([nums[i], nums[j],nums[k]]);
+    //             }
+    //         }
+    //     }
+
+        let j = i + 1,
+            k = len - 1;
+        while(j < k) {
+            let sum = nums[j] + nums[k];
+            if(target == sum) {
+                result.push([nums[i], nums[j], nums[k]]);
+                while(++j < k && nums[j] == nums[j-1]);
+                while(--k >j && nums[k] == nums[k+1]);
+            } else if(target > sum) {
+                j++
+            } else {
+                k--;
             }
         }
+
     }
 
     console.log(result)
-
-    let hash = {},
-        _result = [];
-    for(let l = 0, llen = result.length; l < llen; l ++) {
-        if(!hash[result[l]]) {
-            _result.push(result[l]);
-            hash[result[l]] = true;
-        }
-    }
-    console.log(_result)
-    return _result;
+    return result;
 };
 
-threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]);
+// threeSum([-2,0,0,2,2])
