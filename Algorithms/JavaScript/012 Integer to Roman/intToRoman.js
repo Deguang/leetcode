@@ -65,4 +65,34 @@ var intToRoman = function(num) {
     return res.join('');
 };
 
-console.log(intToRoman(3))
+
+/** solution 2
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman2 = function(num) {
+    const ROMAN_HASH = {
+        'M':1000,
+        'CM':900,
+        'D':500,
+        'CD':400,
+        'C':100,
+        'XC':90,
+        'L':50,
+        "XL":40,
+        'X':10,
+        "IX":9,
+        'V':5,
+        'IV':4,
+        'I':1
+    };
+    var roman = '';
+    Object.keys(ROMAN_HASH).map(function(key) {
+        var keyNum = ROMAN_HASH[key];
+        while(num >= keyNum) {
+            roman += key;
+            num -= keyNum;
+        }
+    })
+    return roman;
+}
