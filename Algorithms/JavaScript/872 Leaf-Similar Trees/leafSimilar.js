@@ -14,4 +14,14 @@ var leafSimilar = function(root1, root2) {
     if(root1.left == root1.right == root2.left == root2.right == null) {
         return root1.val == root2.val
     }
+
 };
+
+var getLeafSequence = function(node) {
+    if(node.left == node.right == null) {
+        return node.val
+    } else {
+        getLeafSequence(node.left)
+        getLeafSequence(node.right)
+    }
+}
