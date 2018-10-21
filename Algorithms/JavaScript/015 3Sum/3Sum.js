@@ -46,7 +46,7 @@ var threeSum = function(nums) {
             let sum = nums[j] + nums[k];
             if(target == sum) {
                 result.push([nums[i], nums[j], nums[k]]);
-                while(++j < k && nums[j] == nums[j-1]);
+                while(++j < k && nums[j] == nums[j-1]); //  循环条件里的 ++ 操作依旧会执行，类似 for 的++
                 while(--k >j && nums[k] == nums[k+1]);
             } else if(target > sum) {
                 j++
