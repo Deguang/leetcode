@@ -1,2 +1,2 @@
 # LeetCode
-JavaScript solutions for LeetCode.
+JavaScript && TypeScript solutions for LeetCode.
